@@ -103,15 +103,3 @@ A full-stack web application for managing a sweet shop inventory built with Reac
 - `POST /api/sweets/:id/restock` - Restock sweet (increase stock)
 
 ---
-
-**Description for Test Image:**
-
-> This is a sample image used to verify that image embedding works correctly in Markdown files. It serves as a placeholder to ensure that images are displayed as expected in documentation or project READMEs.
-
-You can include this description above or below your image in the Markdown file, like this:
-
-```markdown
-<code_block_to_apply_changes_from>
-![Test Image](images/test-image.jpg)
-
-This is a sample image used to verify that image embedding works correctly in Markdown files. It serves as a placeholder to ensure that images are displayed as expected in documentation or project READMEs.
