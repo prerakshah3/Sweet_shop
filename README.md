@@ -111,7 +111,7 @@ A full-stack web application for managing a sweet shop inventory built with Reac
 You can include this description above or below your image in the Markdown file, like this:
 
 markdown
-![Test Image](https://github.com/prerakshah3/Sweet_shop/blob/master/images/test-image.png?raw=true)
+![Test Image](https://github.com/prerakshah3/Sweet_shop/blob/master/images/test-image2.png?raw=true)
 
 
 This is a sample image used to verify that image embedding works correctly in Markdown files. It serves as a placeholder to ensure that images are displayed as expected in documentation or project READMEs.
