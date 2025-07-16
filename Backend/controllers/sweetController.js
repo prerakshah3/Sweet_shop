@@ -21,3 +21,31 @@ exports.deleteSweet = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.getAllSweets = async (req, res) => {
+  try {
+    const sweets = await Sweet.find();
+    res.json(sweets);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Search sweets
+exports.searchSweets = async (req, res) => {
+  try {
+    const { name, category, minPrice, maxPrice } = req.query;
+    const query = {};
+    if (name) query.name = new RegExp(name, 'i');
+    if (category) query.category = new RegExp(category, 'i');
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) query.price.$gte = Number(minPrice);
+      if (maxPrice) query.price.$lte = Number(maxPrice);
+    }
+    const sweets = await Sweet.find(query);
+    res.json(sweets);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
