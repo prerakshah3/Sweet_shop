@@ -31,4 +31,12 @@ describe('Sweet Controller', () => {
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ sweetId: '1001' }));
   });
 
+  test('should delete a sweet', async () => {
+    await Sweet.create({ sweetId: '1001', name: 'Kaju Katli', category: 'Nut-Based', price: 50, quantity: 20 });
+    const req = mockRequest({ params: { sweetId: '1001' } });
+    const res = mockResponse();
+    await sweetController.deleteSweet(req, res);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Sweet deleted' });
+  });
+
 });

@@ -12,3 +12,12 @@ exports.addSweet = async (req, res) => {
   }
 };
 
+exports.deleteSweet = async (req, res) => {
+  try {
+    const sweet = await Sweet.findOneAndDelete({ sweetId: req.params.sweetId });
+    if (!sweet) return res.status(404).json({ message: 'Sweet not found' });
+    res.json({ message: 'Sweet deleted' });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
