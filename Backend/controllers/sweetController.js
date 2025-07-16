@@ -49,3 +49,29 @@ exports.searchSweets = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.sortSweets = async (req, res) => {
+  try {
+    const { sortBy, order = 'asc' } = req.query;
+    const sortOrder = order === 'asc' ? 1 : -1;
+    const sweets = await Sweet.find().sort({ [sortBy]: sortOrder });
+    res.json(sweets);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Purchase sweets
+exports.purchaseSweet = async (req, res) => {
+  try {
+    const { sweetId, quantity } = req.body;
+    const sweet = await Sweet.findOne({ sweetId });
+    if (!sweet) return res.status(404).json({ message: 'Sweet not found' });
+    if (sweet.quantity < quantity) return res.status(400).json({ message: 'Insufficient stock' });
+    sweet.quantity -= quantity;
+    await sweet.save();
+    res.json(sweet);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};

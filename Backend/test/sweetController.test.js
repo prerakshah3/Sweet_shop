@@ -54,4 +54,26 @@ describe('Sweet Controller', () => {
     expect(res.json).toHaveBeenCalledWith(expect.arrayContaining([expect.objectContaining({ name: 'Kaju Katli' })]));
   });
 
+  test('should sort sweets by price', async () => {
+    await Sweet.create([
+      { sweetId: '1001', name: 'Kaju Katli', category: 'Nut-Based', price: 50, quantity: 20 },
+      { sweetId: '1002', name: 'Gulab Jamun', category: 'Milk-Based', price: 10, quantity: 50 }
+    ]);
+    const req = mockRequest({ query: { sortBy: 'price', order: 'asc' } });
+    const res = mockResponse();
+    await sweetController.sortSweets(req, res);
+    expect(res.json).toHaveBeenCalledWith(expect.arrayContaining([
+      expect.objectContaining({ price: 10 }),
+      expect.objectContaining({ price: 50 })
+    ]));
+  });
+
+  test('should purchase sweets and update quantity', async () => {
+    await Sweet.create({ sweetId: '1001', name: 'Kaju Katli', category: 'Nut-Based', price: 50, quantity: 20 });
+    const req = mockRequest({ body: { sweetId: '1001', quantity: 5 } });
+    const res = mockResponse();
+    await sweetController.purchaseSweet(req, res);
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ quantity: 15 }));
+  });
+
 });
