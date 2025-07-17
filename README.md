@@ -106,13 +106,31 @@ A full-stack web application for managing a sweet shop inventory built with Reac
 
 **Description for Test Image:**
 
-> This is a sample image used to verify that image embedding works correctly in Markdown files. It serves as a placeholder to ensure that images are displayed as expected in documentation or project READMEs.
-
-You can include this description above or below your image in the Markdown file, like this:
-
-markdown
 ![Test Image](https://github.com/prerakshah3/Sweet_shop/blob/master/images/test-image2.png?raw=true)
 
+> The image above displays the output of running automated backend tests for the Sweet Shop project using the command `npm test`. It shows that all test cases have passed successfully, including operations such as deleting a sweet, retrieving all sweets, searching and sorting sweets, purchasing, and restocking. This confirms that the core functionalities of the backend are working as expected, and the project is stable at this stage of development.
 
-This is a sample image used to verify that image embedding works correctly in Markdown files. It serves as a placeholder to ensure that images are displayed as expected in documentation or project READMEs.
+---
+
+**Description for Frontend Design:**
+
+![Frontend Screenshot](images/frontend.png)
+
+**Description for Frontend Screenshot:**
+
+The image above showcases the user interface of the Sweet Shop management system, highlighting several key features:
+
+- **Dashboard:** Provides an overview of total products, stock status (in stock, low stock, out of stock), and the total inventory value. It also lists products that need attention, such as those low or out of stock.
+- **Product Management:** Users can view all available sweets with images, prices, and stock information. The interface allows adding new products, updating existing product details, and deleting products. Any product added or updated here will automatically be reflected in both the Inventory and Dashboard sections.
+- **Purchase Flow:** Users can purchase products by selecting the desired quantity, with the total price calculated automatically before confirming the purchase.
+- **Inventory Management:** Displays a detailed list of all products, including their categories, prices, and current stock levels.  
+    - **Restock:** Users can easily restock products directly from the inventory table, ensuring that stock levels are always up to date.
+    - **Search & Sort:** The inventory table supports searching for specific products by name and sorting by different columns (such as price or stock), making it easy to find and manage products efficiently.
+- **Data Synchronization:** Any changes made in product management (such as adding, updating, or deleting a product) are immediately visible in the Inventory and Dashboard sections, ensuring consistency across the application.
+
+This frontend interface is designed to be intuitive and efficient, enabling shop owners to manage their sweets inventory seamlessly, keep track of stock, and ensure that all product information is always current and accessible.
+
+
+
+
 
