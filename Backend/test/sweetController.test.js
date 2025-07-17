@@ -38,6 +38,7 @@ describe('Sweet Controller', () => {
     await sweetController.deleteSweet(req, res);
     expect(res.json).toHaveBeenCalledWith({ message: 'Sweet deleted' });
   });
+
   test('should get all sweets', async () => {
     await Sweet.create({ sweetId: '1001', name: 'Kaju Katli', category: 'Nut-Based', price: 50, quantity: 20 });
     const req = mockRequest();
@@ -76,4 +77,11 @@ describe('Sweet Controller', () => {
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ quantity: 15 }));
   });
 
+  test('should restock sweets and update quantity', async () => {
+    await Sweet.create({ sweetId: '1001', name: 'Kaju Katli', category: 'Nut-Based', price: 50, quantity: 20 });
+    const req = mockRequest({ body: { sweetId: '1001', quantity: 10 } });
+    const res = mockResponse();
+    await sweetController.restockSweet(req, res);
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ quantity: 30 }));
+  });
 });

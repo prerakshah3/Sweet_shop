@@ -3,8 +3,12 @@ const Sweet = require('../models/Sweet');
 // Add a new sweet
 exports.addSweet = async (req, res) => {
   try {
-    const { sweetId, name, category, price, quantity } = req.body;
-    const sweet = new Sweet({ sweetId, name, category, price, quantity });
+    const { sweetId, name, category, price, quantity, description, image } = req.body;
+    let imageUrl = image; // default to the URL from the form
+    if (req.file) {
+      imageUrl = req.file.path; // Cloudinary URL
+    }
+    const sweet = new Sweet({ sweetId, name, category, price, quantity, description, image: imageUrl });
     await sweet.save();
     res.status(201).json(sweet);
   } catch (error) {
@@ -12,6 +16,7 @@ exports.addSweet = async (req, res) => {
   }
 };
 
+// Delete a sweet
 exports.deleteSweet = async (req, res) => {
   try {
     const sweet = await Sweet.findOneAndDelete({ sweetId: req.params.sweetId });
@@ -22,6 +27,7 @@ exports.deleteSweet = async (req, res) => {
   }
 };
 
+// View all sweets
 exports.getAllSweets = async (req, res) => {
   try {
     const sweets = await Sweet.find();
@@ -50,6 +56,7 @@ exports.searchSweets = async (req, res) => {
   }
 };
 
+// Sort sweets
 exports.sortSweets = async (req, res) => {
   try {
     const { sortBy, order = 'asc' } = req.query;
@@ -75,3 +82,36 @@ exports.purchaseSweet = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Restock sweets
+  exports.restockSweet = async (req, res) => {
+    try {
+      const { sweetId, quantity } = req.body;
+      const sweet = await Sweet.findOne({ sweetId });
+      if (!sweet) return res.status(404).json({ message: 'Sweet not found' });
+      sweet.quantity += Number(quantity);
+      await sweet.save();
+      res.json(sweet);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
+
+  // Update a sweet
+  exports.updateSweet = async (req, res) => {
+    try {
+      const updateData = { ...req.body };
+      if (req.file) {
+        updateData.image = req.file.path; // Cloudinary URL
+      }
+      const sweet = await Sweet.findOneAndUpdate(
+        { sweetId: req.params.sweetId },
+        updateData,
+        { new: true, runValidators: true }
+      );
+      if (!sweet) return res.status(404).json({ message: 'Sweet not found' });
+      res.json(sweet);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };

@@ -22,7 +22,8 @@ const sweetSchema = new mongoose.Schema({
     quantity: { 
         type: Number,
         required: true,
-          min: 0 }
+        min: 0 },
+    image: { type: String }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Sweet', sweetSchema);
