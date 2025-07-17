@@ -60,12 +60,12 @@ A full-stack web application for managing a sweet shop inventory built with Reac
 3. **Environment Configuration**
    \`\`\`bash
    cp .env.example .env
-   # Edit .env with your MongoDB connection string
+   Edit .env with your MongoDB connection string
    \`\`\`
 
 4. **Start MongoDB**
    \`\`\`bash
-   # If using local MongoDB
+   If using local MongoDB
    mongod
    \`\`\`
 
@@ -79,7 +79,7 @@ A full-stack web application for managing a sweet shop inventory built with Reac
 
 1. **Install frontend dependencies**
    \`\`\`bash
-   # From project root
+   From project root
    npm install
    \`\`\`
 
