@@ -3,7 +3,8 @@ import { Plus, Search, Filter, Edit, Trash2, Eye } from 'lucide-react';
 import ProductModal from '../components/ProductModal';
 import PurchaseModal from '../components/PurchaseModal';
 
-const API_URL = 'http://localhost:8000/api/sweets';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE}/api/sweets`;
 
 const Products = () => {
   const [products, setProducts] = useState([]);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = 'http://localhost:8000/api/sweets/purchase';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE}/api/sweets/purchase`;
 
 const PurchaseModal = ({ isOpen, onClose, product, onPurchase }) => {
   const [quantity, setQuantity] = useState(1);

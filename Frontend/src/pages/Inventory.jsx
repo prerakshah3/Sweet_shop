@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Package, AlertTriangle, TrendingUp, TrendingDown } from 'lucide-react';
 
-const API_URL = 'http://localhost:8000/api/sweets';
-const RESTOCK_URL = 'http://localhost:8000/api/sweets/restock';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE}/api/sweets`;
+const RESTOCK_URL = `${API_BASE}/api/sweets/restock`;
 
 const Inventory = () => {
   const [products, setProducts] = useState([]);

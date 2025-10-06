@@ -4,7 +4,8 @@ import { useNotifications } from '../context/NotificationContext';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 
-const API_URL = 'http://localhost:8000/api/sweets';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_URL = `${API_BASE}/api/sweets`;
 
 const ProductModal = ({ isOpen, onClose, product, onSave, products }) => {
   const { addNotification } = useNotifications();

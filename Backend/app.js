@@ -10,8 +10,24 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://prerakshah3.github.io'
+  ],
+  credentials: false
+}));
 app.use(express.json());
+
+// Health and root routes (placed early for Render health checks)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
+app.get('/', (req, res) => {
+  res.status(200).send('Sweet Shop API is running');
+});
 
 // Routes
 app.use('/api/sweets', sweetRoutes);
