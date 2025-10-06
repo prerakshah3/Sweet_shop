@@ -30,6 +30,8 @@ jobs:
       - run: npm ci
         working-directory: Frontend
         name: Inject API URL
+        working-directory: Frontend
+        run: echo "VITE_API_URL=${{ secrets.PAGES_API_URL }}" > .env.production
       - run: npm run build
         working-directory: Frontend
       - uses: actions/upload-pages-artifact@v3
