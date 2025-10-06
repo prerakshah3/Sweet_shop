@@ -10,20 +10,23 @@ const sweetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    category: { 
-        type: String, 
-        required: true 
+    category: {
+        type: String,
+        required: true
     },
-    price: { 
-        type: Number, 
-        required: true, 
-        min: 0 
-    },
-    quantity: { 
+    price: {
         type: Number,
         required: true,
-        min: 0 },
-    image: { type: String }
+        min: 0
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+    image: { 
+        type: String 
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Sweet', sweetSchema);
