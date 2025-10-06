@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Sweet = require('../models/Sweet');
+const Sweet = require('../models/sweet');
 const sweetController = require('../controllers/sweetController');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { mockRequest, mockResponse } = require('jest-mock-req-res');
